@@ -1,0 +1,44 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    font-weight: bold;
+  }
+  
+  .main-header .logo {
+    font-size: 36px;
+  }
+  
+  .main-header nav a {
+    margin-right: 20px;
+    margin-left: 30px;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .main-header nav .btn {
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background-color: #4a56e2;
+    color: white;
+  }
+  
+  .register {
+    background-color: #5b6cfa;
+  }  
+  .user-greeting {
+    margin-right: 20px;
+    font-weight: bold;
+    color: #1d3557;
+  }
+  
+  .user-name {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #444;
+  }
+  

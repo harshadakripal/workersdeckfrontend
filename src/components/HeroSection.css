@@ -1,0 +1,30 @@
+.hero-section {
+  background-color: #1010aede;
+  color: white;
+  text-align: center;
+  padding: 30px 25px;
+  z-index: 1;
+  position: relative;
+
+  /* Animation settings */
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeSlideDown 0.8s ease-out forwards;
+}
+
+@keyframes fadeSlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  margin: 0;
+}
