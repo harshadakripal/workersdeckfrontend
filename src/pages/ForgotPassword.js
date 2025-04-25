@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HeroSection from "../components/HeroSection";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 import "./ForgotPassword.css"; // Add this for styling
 
 const ForgotPassword = () => {
@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     setError("");
 
     try {
-      const res = await axios.post("/auth/forgot-password", { email });
+      const res = await axiosInstance.post("/auth/forgot-password", { email });
       console.log(res.data.token);
       setMessage(`✅ Password reset link sent (token): ${res.data.token}`);
     } catch (error) {

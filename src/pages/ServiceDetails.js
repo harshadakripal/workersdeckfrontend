@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 import "./ServiceDetails.css";
 
 const ServiceDetails = () => {
@@ -23,7 +23,7 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    axios.get(`/services/${id}`)
+    axiosInstance.get(`/services/${id}`)
       .then((res) => setService(res.data))
       .catch((err) => {
         console.error("Error loading service:", err);
@@ -41,7 +41,7 @@ const ServiceDetails = () => {
     if (!token) return navigate("/login");
 
     try {
-      const res = await axios.post("/book", { ...form, service_id: id }, {
+      const res = await axiosInstance.post("/book", { ...form, service_id: id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage(` ${res.data.message}`);

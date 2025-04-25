@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../pages/Login.css";
 import HeroSection from "../components/HeroSection";
 import { useAuth } from "../context/AuthContext";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axios.post("/auth/login", form);
+      const response = await axiosInstance.post("/auth/login", form);
       const { token, user } = response.data;
 
       login(token, user); // store in context

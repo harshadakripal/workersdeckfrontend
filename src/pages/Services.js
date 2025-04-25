@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../api/axios';
+import axiosInstance from '../api/axios';
 import './Services.css';
 import HeroSection from '../components/HeroSection';
 
@@ -16,7 +16,7 @@ const Services = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('/services')
+    axiosInstance.get('/services')
       .then((res) => setServices(res.data))
       .catch((err) => console.error('Failed to fetch services:', err));
   }, []);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../pages/Register.css";
 import HeroSection from "../components/HeroSection";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -19,7 +19,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/auth/register", {
+      const response = await axiosInstance.post("/auth/register", {
         ...form,
         phone: form.phone || "+1-314-555-0000", // default demo
       });
