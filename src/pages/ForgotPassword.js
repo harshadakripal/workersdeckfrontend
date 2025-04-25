@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     setError("");
 
     try {
-      const res = await axiosInstance.post("/auth/forgot-password", { email });
+      const res = await axiosInstance.post("/api/auth/forgot-password", { email });
       console.log(res.data.token);
       setMessage(`✅ Password reset link sent (token): ${res.data.token}`);
     } catch (error) {

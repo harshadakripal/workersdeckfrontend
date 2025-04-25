@@ -16,7 +16,7 @@ const Services = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosInstance.get('/services')
+    axiosInstance.get('/api/services')
       .then((res) => setServices(res.data))
       .catch((err) => console.error('Failed to fetch services:', err));
   }, []);

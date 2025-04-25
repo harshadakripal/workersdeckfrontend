@@ -32,7 +32,7 @@ const Dashboard = () => {
   const updateStatus = async (id, status) => {
     try {
       await axiosInstance.put(
-        `/bookings/worker/update-status/${id}`,
+        `/api/bookings/worker/update-status/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -50,7 +50,7 @@ const Dashboard = () => {
       return;
     }
 
-    axiosInstance.get("/auth/me", {
+    axiosInstance.get("/api/auth/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
@@ -69,7 +69,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (user?.role === "worker") {
-      axiosInstance.get("/bookings/worker/my-bookings", {
+      axiosInstance.get("/api/bookings/worker/my-bookings", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setWorkerBookings(res.data))
@@ -80,7 +80,7 @@ const Dashboard = () => {
   const handleCancelBooking = async (bookingId) => {
     if (!window.confirm("Are you sure you want to cancel this booking?")) return;
     try {
-      await axiosInstance.delete(`/bookings/${bookingId}`, {
+      await axiosInstance.delete(`/api/bookings/${bookingId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBookings(bookings.filter((b) => b.id !== bookingId));
@@ -93,27 +93,27 @@ const Dashboard = () => {
     console.log("🔄 fetchAdminData called with:", type);
     try {
       if (type === "users") {
-        const res = await axiosInstance.get("/bookings/admin/users", {
+        const res = await axiosInstance.get("/api/bookings/admin/users", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(res.data);
       }
   
       if (type === "bookings") {
-        const res = await axiosInstance.get("/bookings/admin/bookings", {
+        const res = await axiosInstance.get("/api/bookings/admin/bookings", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAdminBookings(res.data);
   
         // ✅ Fetch users as well so we can assign workers
-        const userRes = await axiosInstance.get("/bookings/admin/users", {
+        const userRes = await axiosInstance.get("/api/bookings/admin/users", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(userRes.data);
       }
   
       if (type === "services") {
-        const res = await axiosInstance.get("/bookings/admin/services", {
+        const res = await axiosInstance.get("/api/bookings/admin/services", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setServices(res.data);
@@ -129,7 +129,7 @@ const Dashboard = () => {
   const handleDeleteUser = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axiosInstance.delete(`/bookings/admin/users/${id}`, {
+      await axiosInstance.delete(`/api/bookings/admin/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(users.filter((u) => u.id !== id));
@@ -141,7 +141,7 @@ const Dashboard = () => {
   const handleDeleteService = async (id) => {
     if (!window.confirm("Are you sure you want to delete this service?")) return;
     try {
-      await axiosInstance.delete(`/bookings/admin/services/${id}`, {
+      await axiosInstance.delete(`/api/bookings/admin/services/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setServices(services.filter((s) => s.id !== id));
@@ -156,7 +156,7 @@ const Dashboard = () => {
     const newPrice = prompt("Edit price:", service.price || 0);
     if (!newName || !newPrice) return;
 
-    axiosInstance.put(`/bookings/admin/services/${service.id}`, {
+    axiosInstance.put(`/api/bookings/admin/services/${service.id}`, {
       name: newName,
       description: newDescription,
       price: parseFloat(newPrice),
@@ -173,7 +173,7 @@ const Dashboard = () => {
       return;
     }
     try {
-      await axiosInstance.post("/bookings/admin/services", newService, {
+      await axiosInstance.post("/api/bookings/admin/services", newService, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNewService({ name: "", description: "", price: "" });
@@ -186,7 +186,7 @@ const Dashboard = () => {
 
   const assignWorker = async (bookingId, workerId) => {
     try {
-      await axiosInstance.put(`/bookings/admin/assign-worker/${bookingId}`, {
+      await axiosInstance.put(`/api/bookings/admin/assign-worker/${bookingId}`, {
         worker_id: workerId
       }, {
         headers: { Authorization: `Bearer ${token}` }

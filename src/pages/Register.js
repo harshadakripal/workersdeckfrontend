@@ -19,7 +19,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post("/auth/register", {
+      const response = await axiosInstance.post("/api/auth/register", {
         ...form,
         phone: form.phone || "+1-314-555-0000", // default demo
       });

@@ -23,7 +23,7 @@ const ServiceDetails = () => {
   };
 
   useEffect(() => {
-    axiosInstance.get(`/services/${id}`)
+    axiosInstance.get(`/api/services/${id}`)
       .then((res) => setService(res.data))
       .catch((err) => {
         console.error("Error loading service:", err);
@@ -41,7 +41,7 @@ const ServiceDetails = () => {
     if (!token) return navigate("/login");
 
     try {
-      const res = await axiosInstance.post("/book", { ...form, service_id: id }, {
+      const res = await axiosInstance.post("/api/book", { ...form, service_id: id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage(` ${res.data.message}`);

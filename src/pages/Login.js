@@ -28,7 +28,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axiosInstance.post("/auth/login", form);
+      const response = await axiosInstance.post("/api/auth/login", form);
       const { token, user } = response.data;
 
       login(token, user); // store in context
