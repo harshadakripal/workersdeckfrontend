@@ -28,7 +28,7 @@ const ResetPassword = () => {
       setErrorMessage('❌ Passwords do not match');
       return;
     }
-
+    const baseURL = 'https://workersdeckbackend-production.up.railway.app';
     try {
       const response = await fetch(`${baseURL}/api/auth/reset-password`, {
         method: 'POST',
